@@ -10,6 +10,7 @@ git clone https://github.com/pashaoleynik97/service-oriented-sys.git app-source
 
 echo "Building the application..."
 cd app-source
+chmod +x gradlew
 ./gradlew bootJar
 
 echo "Running the application..."
