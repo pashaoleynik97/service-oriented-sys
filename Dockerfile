@@ -1,8 +1,14 @@
 FROM openjdk:17
 WORKDIR /app
 
-# Copy the built JAR from Gradle's output directory
-COPY build/libs/userservice-0.0.1-SNAPSHOT.jar app.jar
+# Install git and necessary tools
+RUN apt-get update && apt-get install -y git
 
-# Run the app
-CMD ["java", "-jar", "app.jar"]
+# Copy the entrypoint script
+COPY entrypoint.sh .
+
+# Make the script executable
+RUN chmod +x entrypoint.sh
+
+# Set entrypoint
+ENTRYPOINT ["./entrypoint.sh"]
