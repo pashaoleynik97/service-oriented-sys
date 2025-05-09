@@ -1,13 +1,32 @@
 version: '3.8'
 
 services:
+
+  postgres-db:
+    image: postgres:16
+    container_name: postgres-db
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: userdb
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    restart: unless-stopped
+
   lab1-app:
     build:
       context: .
       dockerfile: Dockerfile
     container_name: lab1-container
+    depends_on:
+      - postgres-db
     ports:
       - "8081:8081"
     environment:
       - SPRING_PROFILES_ACTIVE=default
     restart: unless-stopped
+
+volumes:
+  postgres-data:
