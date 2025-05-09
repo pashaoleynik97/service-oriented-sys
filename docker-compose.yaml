@@ -9,6 +9,8 @@ services:
       POSTGRES_USER: admin
       POSTGRES_PASSWORD: admin
       POSTGRES_DB: userdb
+    networks:
+      - spring-lab-network
     ports:
       - "5432:5432"
     volumes:
@@ -26,6 +28,8 @@ services:
       - "8081:8081"
     environment:
       - SPRING_PROFILES_ACTIVE=default
+    networks:
+      - spring-lab-network
     restart: unless-stopped
 
 volumes:
