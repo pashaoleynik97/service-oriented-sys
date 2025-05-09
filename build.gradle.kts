@@ -21,7 +21,7 @@ repositories {
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter")
 	runtimeOnly("org.postgresql:postgresql")
-	implementation("org.flywaydb:flyway-core")
+	implementation("org.flywaydb:flyway-core:10.20.1")
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.springframework.boot:spring-boot-starter-web")
