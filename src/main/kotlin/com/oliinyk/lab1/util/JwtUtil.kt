@@ -2,14 +2,14 @@ package com.oliinyk.lab1.util
 
 import io.jsonwebtoken.Claims
 import io.jsonwebtoken.Jwts
-import io.jsonwebtoken.SignatureAlgorithm
+import io.jsonwebtoken.security.Keys
 import org.springframework.stereotype.Component
 import java.util.Date
 
 @Component
 class JwtUtil {
 
-    private val secretKey = "9ACFD5FCD6C7DDF2BED1F94588E4B"
+    private val secretKey = SecretKeyKeeper.key
 
     fun generateToken(username: String, role: String): String =
         Jwts.builder()
@@ -17,7 +17,7 @@ class JwtUtil {
             .claim("role", role)
             .setIssuedAt(Date(System.currentTimeMillis()))
             .setExpiration(Date(System.currentTimeMillis() + 1000 * 60 * 60 * 10))
-            .signWith(SignatureAlgorithm.HS256, secretKey)
+            .signWith(secretKey)
             .compact()
 
     fun extractClaims(token: String): Claims =
@@ -26,4 +26,8 @@ class JwtUtil {
             .build()
             .parseSignedClaims(token)
             .payload
+}
+
+private object SecretKeyKeeper {
+    val key = Keys.secretKeyFor(io.jsonwebtoken.SignatureAlgorithm.HS256)
 }
