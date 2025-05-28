@@ -1,4 +1,4 @@
-package com.oliinyk.lab1.config
+package com.oliinyk.lab1.controller
 
 import com.oliinyk.lab1.util.JwtUtil
 import org.springframework.web.bind.annotation.PostMapping
