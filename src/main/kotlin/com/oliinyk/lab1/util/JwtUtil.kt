@@ -4,7 +4,7 @@ import io.jsonwebtoken.Claims
 import io.jsonwebtoken.Jwts
 import io.jsonwebtoken.security.Keys
 import org.springframework.stereotype.Component
-import java.util.Date
+import java.util.*
 
 @Component
 class JwtUtil {
@@ -29,5 +29,5 @@ class JwtUtil {
 }
 
 private object SecretKeyKeeper {
-    val key = Keys.secretKeyFor(io.jsonwebtoken.SignatureAlgorithm.HS256)
+    val key = Keys.hmacShaKeyFor(Base64.getDecoder().decode("5ZkVLniwaKeOkkYf9WYw+Pch1vgqipiCSk7EJOoM4Y8="))
 }
