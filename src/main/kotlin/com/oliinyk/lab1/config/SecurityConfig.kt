@@ -1,5 +1,6 @@
 package com.oliinyk.lab1.config
 
+import org.springframework.boot.actuate.autoconfigure.security.servlet.EndpointRequest
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
@@ -21,6 +22,7 @@ class SecurityConfig(
                 disable()
             }
             authorizeHttpRequests {
+                authorize(EndpointRequest.toAnyEndpoint(), permitAll)
                 authorize("/auth/**", permitAll)
                 authorize(anyRequest, authenticated)
             }
