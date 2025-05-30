@@ -28,6 +28,7 @@ services:
       - "8081:8081"
     environment:
       - SPRING_PROFILES_ACTIVE=default
+      - SPRING_ZIPKIN_BASE_URL=http://zipkin:9411
     networks:
       - spring-lab-network
     restart: unless-stopped
